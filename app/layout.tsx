@@ -5,6 +5,7 @@ import { ModalProvider } from '@/Providers/modal-provider'
 
 import './globals.css'
 import type { Metadata } from 'next'
+import { ToasterProvider } from '@/Providers/toast-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <ToasterProvider />
           <ModalProvider />
           {children}
           </body>
