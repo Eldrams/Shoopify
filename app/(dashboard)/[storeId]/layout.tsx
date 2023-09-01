@@ -1,3 +1,4 @@
+import Navbar from "@/components/navbar";
 import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -9,13 +10,13 @@ export default async function DashboardLayout ({
     children: React.ReactNode;
     params: {storeId: string}
 })   {
-    const {userId} = auth();
+    const { userId } = auth();
     
     if (!userId) {
-        redirect('/sign-in');
+        redirect('/sign-in'); //check for user
     }
 
-    const store = await prismadb.store.findFirst({
+    const store = await prismadb.store.findFirst({ //load store via id passed from root
         where: {
             id: params.storeId,
             userId
@@ -24,10 +25,10 @@ export default async function DashboardLayout ({
 
     if (!store) {
         redirect('/');
-    }
+    } //user should always have a store before being able to see/render anything
     return (
         <>
-            <div>This Will be a Nav</div>
+            <Navbar />
             {children}
         </>
     )
