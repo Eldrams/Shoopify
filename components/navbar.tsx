@@ -25,7 +25,6 @@ const Navbar = async () => {
                     <UserButton afterSignOutUrl="/"/>
                 </div>
             </div>
-            This is a component
         </div>
     );
 };
